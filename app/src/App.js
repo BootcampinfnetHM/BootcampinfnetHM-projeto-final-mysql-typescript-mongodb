@@ -29,10 +29,11 @@ function App() {
         <Suspense suspense = {<Loading/>}/>
 
         <Routes>
-          <Route path='/document' element={<Document setCurrentRoute={setCurrentRoute}/>} />
-          <Route path='/document/:id' element={<Documents setCurrentRoute={setCurrentRoute}/>} />
-          <Route path='/login' element={<Login setCurrentRoute={setCurrentRoute}/>} />
-          <Route path='/register' element={<Register setCurrentRoute={setCurrentRoute}/>} />
+          <Route path="" element={<Documents setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/documents" element={<Documents setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/document/:id" element={<Document setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/login" element={<Login setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/register" element={<Register setCurrentRoute={setCurrentRoute}/>}/>
         </Routes>
 
     </Router>

@@ -9,7 +9,14 @@ document.get('/', async(req, res) => {
     const result = await docCtrl.getDocument(req.query)
 
     res.statusCode = result.status
-    res.json(result.data)
+    res.json(result)
+})
+
+document.get('/:id', async(req, res) => {
+    const result = await docCtrl.getDocumentById(req.params.id)
+    
+    res.statusCode = result.status
+    res.json(result)
 })
 // [
 //     { id: 1, title: 'Snow', content: 'txtxtxttxtxtx', createdAt: 'Jon'},

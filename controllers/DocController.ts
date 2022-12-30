@@ -1,6 +1,7 @@
 import { Document } from "../models/document.entity"; 
 import { Op } from "sequelize";
 
+
 import GeneriController from "./GenericController";
 
 
@@ -8,6 +9,18 @@ import GeneriController from "./GenericController";
 class DocController extends GeneriController{
     constructor() {
         super()
+    }
+
+    async getDocumentById(id: string) {
+
+        let document = await Document.findById(id)
+
+        console.log(document)
+
+        return {
+            document,
+            status: 200
+        }
     }
 
 
@@ -20,13 +33,14 @@ class DocController extends GeneriController{
         page = res[1]
 
 
-        console.log(limit +'///////')
-
         let document = await Document.find({ id }).skip(page * limit).limit(limit)
-        {console.log(document)}
+
+        const total = await Document.find({ id });
+        const count = Math.ceil(total.length / limit);
 
         return {
-            data: document,
+            document,
+            count,
             status: 200
         }
     }

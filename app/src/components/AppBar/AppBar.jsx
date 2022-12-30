@@ -15,8 +15,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const pages = [
-    {name: 'Novo documento', link: '/document'},
-    {name: 'Pesquisar um Doc', link: '/document/1'},
+    {name: 'Editor de documento', link: '/document/1'},
+    {name: 'Pesquisar documentos', link: '/documents'},
     {name: 'Sign in', link: '/login'},
     {name: 'Sign Up', link: '/register'},
 ];
@@ -146,7 +146,7 @@ function AppBarCustom() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://pps.whatsapp.net/v/t61.24694-24/233290709_811454273396782_7918534924383863266_n.jpg?ccb=11-4&oh=01_AdR2NXRA2Na-zCiBMesA6hV7fnzRcPGtahaw-QZPVHAW2A&oe=63BB9835" />
               </IconButton>
             </Tooltip>
             <Menu
