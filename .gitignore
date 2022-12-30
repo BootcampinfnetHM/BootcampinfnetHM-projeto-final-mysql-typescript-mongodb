@@ -42,11 +42,14 @@ node_modules/
 jspm_packages/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 */node_modules/
 =======
 >>>>>>> 6b70933bf24c426f34e28315f6c61b5a2f29ae00
 =======
 >>>>>>> 97b83a8f7851f9041e58058252e5f670bb4c2b52
+=======
+>>>>>>> 09f0638451f8054e6eec8ec4c3434d1f42bac94f
 
 # TypeScript v1 declaration files
 typings/
