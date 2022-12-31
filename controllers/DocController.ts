@@ -11,16 +11,23 @@ class DocController extends GeneriController{
         super()
     }
 
-    async getDocumentById(id: string) {
+    async getDocumentById(_id: string) {
 
-        let document = await Document.findById(id)
-
-        console.log(document)
+        let document = await Document.findById(_id)
 
         return {
             document,
             status: 200
         }
+    }
+
+    async updateDoc(_id: string, data: any) {
+        let txt = await Document.findByIdAndUpdate({_id}, data)
+
+        return {
+            status: 200
+        }
+
     }
 
 

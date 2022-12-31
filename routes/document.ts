@@ -36,15 +36,12 @@ document.post('/', async(req, res) => {
 })
 
 document.patch('/:id', async(req, res) => {
+    const result = await docCtrl.updateDoc(req.params.id, req.body)
     res.json({
 
     })
 })
 
-document.get('/:id', async(req, res) => {
-    res.json({
 
-    })
-})
 
 export default document

@@ -107,7 +107,8 @@ const start = async () => {
       dashboard: {
         component: AdminJS.bundle('./components/Dashboard')
       },
-      rootPath: '/external-admin',
+      //TODO: Login não aceita outro roothPath além de /admin'
+      rootPath: '/admin',
       branding: {
         companyName: 'OnlineDocs',
         logo: `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/TK_archive_icon.svg/1024px-TK_archive_icon.svg.png`,
@@ -117,7 +118,6 @@ const start = async () => {
 
   const admin = new AdminJS(adminOptions)
 
-  // const adminRouter = AdminJSExpress.buildRouter(admin)
   const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
      authenticate: async (email, password) => {
 
@@ -152,10 +152,6 @@ const start = async () => {
   app.use('/auth', auth)
 
 
-
-  app.get('/', (req, res) => {
-    res.send('Api rodando')
-  })
 
   app.listen(PORT, () => {
     console.log(`AdminJS started on http://localhost:${PORT}${admin.options.rootPath}`)
