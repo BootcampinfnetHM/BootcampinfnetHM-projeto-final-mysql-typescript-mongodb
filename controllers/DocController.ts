@@ -23,8 +23,9 @@ class DocController extends GeneriController{
 
     async updateDoc(_id: string, data: any) {
         let txt = await Document.findByIdAndUpdate({_id}, data)
-
+        console.log(data)
         return {
+            txt,
             status: 200
         }
 

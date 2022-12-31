@@ -40,7 +40,6 @@ const Documents = ({ setCurrentRoute }) => {
         { headerName: 'Data', key: 'createdAt', id: false  },
         { headerName: 'Data', key: 'updatedAt', id: false  },
         { headerName: 'Ações', key: 'null', id: false, action: (params) => {
-            console.log(params.id)
             return <>
                 <IconButton onClick={() =>  navigate(`/document/${params._id}`)} >
                     <Edit></Edit>
