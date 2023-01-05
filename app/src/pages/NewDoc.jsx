@@ -1,58 +1,31 @@
 import React, { useEffect, useRef } from "react"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css'
 import { useState } from "react";
 import useSWR from 'swr'
 import { Editor } from '@tinymce/tinymce-react';
+import { Input } from "../components";
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/material";
-import { userIsLoggedIn } from "../services/auth";
 
-const Document = ({ setCurrentRoute }) => {
+const NewDoc = ({ setCurrentRoute }) => {
   const editorRef = useRef(null);
 
   const location = useLocation();
-  const navigate = useNavigate();
   const params = useParams();
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 
-  const { data, error, isLoading } = useSWR(`http://localhost:3002/document/${params.id}`, fetcher, { refreshInterval: 5000 })
-
   const  [ titleVar , setTitle] = useState("")
   const  [ content , setContent] = useState("")
 
 
-const loadDoc = async ()=> {
-  console.log(data.document)
-  setTitle(data.document.title)
-  setContent(data.document.content)
-}
-
-
 
 const updateDoc = () => {
-  fetch(`http://localhost:3002/document/${params.id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      content: editorRef.current.getContent(), 
-      title: titleVar,
-    }),
-    headers: {
-      'Content-type' : 'application/json; charset=UTF-8'
-    }
-  })
+
 }
-
-  useEffect(() => {
-    loadDoc()
-  }, [data])
-
-  useEffect(() => {
-    userIsLoggedIn(navigate, null)
-  }, [])
 
 
   return (
@@ -93,4 +66,4 @@ const updateDoc = () => {
   );
 }
 
-export default Document
+export default NewDoc

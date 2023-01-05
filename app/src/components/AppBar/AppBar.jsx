@@ -15,7 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const pages = [
-    {name: 'Editor de documento', link: '/document/1'},
+    {name: 'Novo documento', link: '/new-document/'},
     {name: 'Pesquisar documentos', link: '/documents'},
     {name: 'Sign in', link: '/login'},
     {name: 'Sign Up', link: '/register'},

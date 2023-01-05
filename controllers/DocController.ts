@@ -20,16 +20,25 @@ class DocController extends GeneriController{
             status: 200
         }
     }
-
+// TODO: Título não está salvando alteração. ?
     async updateDoc(_id: string, data: any) {
         let txt = await Document.findByIdAndUpdate({_id}, data)
-        console.log(data)
         return {
             txt,
             status: 200
         }
 
     }
+
+    async deleteDoc(_id: string) {
+       await Document.deleteOne({_id: _id})
+        return {
+            status: 200
+        }
+
+    }
+
+
 
 
     async getDocument(query: any)  {
@@ -46,7 +55,7 @@ class DocController extends GeneriController{
         const total = await Document.find({ id });
         const count = Math.ceil(total.length / limit);
 
-        return {
+        return { 
             document,
             count,
             status: 200

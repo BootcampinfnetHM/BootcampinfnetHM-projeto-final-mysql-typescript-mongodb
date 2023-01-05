@@ -6,6 +6,6 @@ class GeneriController {
             return [limitVar, pageVar]
     }
 }
-
+ 
 
 export default GeneriController
