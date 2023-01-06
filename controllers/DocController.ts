@@ -12,12 +12,11 @@ class DocController extends GeneriController{
     }
 
     async getDocumentById(_id: string) {
-
         let document = await Document.findById(_id)
-
+ 
         return {
             document,
-            status: 200
+            status: 200 
         }
     }
 // TODO: Título não está salvando alteração. ?
@@ -37,8 +36,6 @@ class DocController extends GeneriController{
         }
 
     }
-
-
 
 
     async getDocument(query: any)  {

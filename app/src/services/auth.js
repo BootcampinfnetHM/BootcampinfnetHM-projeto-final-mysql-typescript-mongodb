@@ -12,11 +12,11 @@ const userIsLoggedIn = (navigate, route) => {
             navigate('/')
         }
     }
-    else{
-        if( route !== '/login' && route !== '/register') {
-            navigate('/login')
-        }
-    }
+    // else{
+    //     if( route !== '/login' && route !== '/register') {
+    //         navigate('/login')
+    //     }
+    // }
     }
 
 const login = async (userEmail, password) => {

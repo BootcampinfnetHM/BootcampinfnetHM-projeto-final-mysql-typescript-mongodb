@@ -21,7 +21,7 @@ import Paper from '@mui/material/Paper';
               <TableRow>
 
                 {
-                columns.map(column => <TableCell >{column.headerName}</TableCell> )
+                columns.map(column => <TableCell>{column.headerName}</TableCell> )
                 }
 
               </TableRow>

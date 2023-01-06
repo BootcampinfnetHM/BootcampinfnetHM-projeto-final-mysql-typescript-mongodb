@@ -25,5 +25,5 @@ const sequelizeDb = new Sequelize(`mysql://${SQL_DB_USER}:${SQL_DB_PASS}@${SQL_D
 
 export {
     sequelizeDb,
-    mongooseDb
+    mongooseDb 
 }

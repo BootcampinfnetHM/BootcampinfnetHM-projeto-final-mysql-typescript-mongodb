@@ -20,7 +20,7 @@ const Document = ({ setCurrentRoute }) => {
 
 
   const { data, error, isLoading } = useSWR(`http://localhost:3002/document/${params.id}`, fetcher, { refreshInterval: 5000 })
-
+  console.log(error)
   const  [ titleVar , setTitle] = useState("")
   const  [ content , setContent] = useState("")
 

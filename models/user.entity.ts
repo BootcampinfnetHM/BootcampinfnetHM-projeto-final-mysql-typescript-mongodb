@@ -33,9 +33,9 @@ User.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
+            autoIncrement: true, 
             primaryKey: true,
-        },
+        }, 
         name: {
             type: new DataTypes.STRING(40),
             allowNull: false,

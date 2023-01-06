@@ -76,14 +76,16 @@ const Register = ({ setCurrentRoute }) => {
                         const response = await register(email, username, name, password)
                         if(response.status === 200) {
                             alert('Você recebrá um email de confirmação em alguns instantes')
+                            // TODO: Re-envio de email
                         }
+                        // else if ( response.status === 400) {
+                        //     alert('O Username ou Email já foram cadastrados')
+                        // }
                         else if ( response.status === 404) {
                             alert('Um erro aconteceu')
                         }
                     }}
-                    >
-                            Registrar
-                    </Button>
+                    > Registrar </Button>
                     <Button 
                     variant="contained" 
                     onClick={() => {

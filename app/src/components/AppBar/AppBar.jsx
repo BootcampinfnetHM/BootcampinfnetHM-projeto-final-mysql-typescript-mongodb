@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
+import { userIsLoggedIn } from '../../services/auth';
+
 
 
 const pages = [
@@ -31,7 +33,7 @@ const settings = [
 ];
 
 function AppBarCustom() {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

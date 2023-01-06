@@ -8,9 +8,8 @@ import { Role } from './models/role.entity'
 import { Document } from './models/document.entity'
 import UserController from './controllers/UserController'
 import session from 'express-session'
-
+import hbs from 'hbs'
 import cors from 'cors'
-
 import document from './routes/document'
 import auth from './routes/auth'
 
@@ -18,8 +17,9 @@ require('dotenv').config()
 
 const bcrypt = require('bcryptjs')
 const mysqlStore = require('express-mysql-session')(session)
-
 const PORT = 3002
+const ROOT_DIR = __dirname
+const path = require('node:path')
 
 
 
@@ -59,8 +59,8 @@ const generateResource = (Model: object, propreties: any = {}, action:any = {}) 
         updatedAt: {
           isVisible: {
             list: true, edit: false, create: false, show: true
-          }
-        }
+          } 
+        }  
       },
       actions: {
         ...action
@@ -142,10 +142,11 @@ const start = async () => {
   }
   
   )
-
   app.use(cors())
   app.use(express.json())
-
+  hbs.registerPartials(path.join(ROOT_DIR, 'views'))
+  app.set('VIEW ENGINE', '.hbs')
+  
 
   app.use(admin.options.rootPath, adminRouter)
   app.use('/document', document)

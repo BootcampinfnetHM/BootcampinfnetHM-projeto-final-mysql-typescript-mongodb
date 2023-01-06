@@ -12,17 +12,20 @@ auth.post('/login', async (req, res) => {
             res.statusCode = 200
             res.json(user)
         }
-        else {
+        else {  
             res.statusCode = 200
             res.json({msg: 'Usuário inativo'})
         }
+    }  
+    else {
+        res.statusCode = 404
+        res.json({})
     }
-    res.statusCode = 404
-    res.json({'server-msg': 'Invalid data'})
 })
 
 auth.post('/register', async (req, res) => {
     const result = await userCtrl.register(req.body.email, req.body.username, req.body.name, req.body.password)
+    
     if(result) {
         res.json({'msg': 'Usuário criado'})
         return
@@ -31,7 +34,7 @@ auth.post('/register', async (req, res) => {
     res.json({'msg': 'Erro ao criar usuário'})
 })
 
-auth.get('/confirm-email/:token', async (req, res) => {
+auth.get('/confirm-email', async (req, res) => {
     res.json({})
 })
 

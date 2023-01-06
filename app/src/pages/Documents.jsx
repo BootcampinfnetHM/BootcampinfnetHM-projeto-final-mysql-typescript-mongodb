@@ -36,7 +36,7 @@ const Documents = ({ setCurrentRoute }) => {
       }, [])
 
     const [page, setPage] = useState(1)
-    const [limit, setLimit] = useState(8)
+    const [limit, setLimit] = useState(10)
     const user = getId()
 
     const handleChange = (event, value) => {
@@ -44,7 +44,7 @@ const Documents = ({ setCurrentRoute }) => {
     }
 
     const { data, error, isLoading } = useSWR(`http://localhost:3002/document?id=${user.id}&page=${page}&limit=${limit}`, fetcher, {refreshInterval: 5000})
-
+    console.log(error)
     const columns = [
         { headerName: 'Id', key: '_id', id: true },
         { headerName: 'Título', key: 'title', id: true },
@@ -65,7 +65,6 @@ const Documents = ({ setCurrentRoute }) => {
         
     ];
     
-    console.log(data)
 
     let ListaProps = {
         style:{
