@@ -18,7 +18,7 @@ export class Role extends Model<IRole, RoleCreationAttributes> {
 }
 
 Role.init(
-    {
+    { 
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,

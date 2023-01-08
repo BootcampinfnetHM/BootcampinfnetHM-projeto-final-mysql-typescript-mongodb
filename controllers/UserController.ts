@@ -35,18 +35,21 @@ class UserController {
     async register(email: string, username: string, name: string, password: string){
 
       let tokenHash = await bcrypt.hash(`${username}${name}`, 10)
+      let pass = await bcrypt.hashSync(password, 10)
+
+
       // TODO: Mudar token para PIN
-        // let user =  await User.create({ 
-        //   email,
-        //   username,
-        //   name,
-        //   password,
-        //   token: tokenHash,
-        //   active: false,
-        //   role_id: 3,
-        //   createdAt: new Date(),
-        //   updatedAt: new Date()
-        //   })
+        let user =  await User.create({ 
+          email,
+          username,
+          name,
+          password: pass,
+          token: tokenHash,
+          active: false,
+          role_id: 3,
+          createdAt: new Date(),
+          updatedAt: new Date()
+          })
 
           this.mail.sendEmail(`${email}`, 'Complete seu registro', 'token-email', {
             email,
@@ -57,6 +60,28 @@ class UserController {
 
           return true
     }
+
+
+    emailConfirmation = async (token: any) => {
+      let user =  await User.findOne({
+        where: {
+            token
+        }
+      })
+      if(user && user.id !== null) {
+        User.update({
+          active: true
+        }, {
+          where: {
+            id: user.id
+          }
+      })
+        return true
+      }
+
+      return false 
+    }
+ 
 }
 
 export default UserController

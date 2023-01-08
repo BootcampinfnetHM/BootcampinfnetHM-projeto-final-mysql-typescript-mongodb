@@ -12,13 +12,15 @@ document.get('/', async(req, res) => {
     res.json(result)
 })
 
-document.get('/:id', async(req, res) => {
-    const result = await docCtrl.getDocumentById(req.params.id)
-    
-    res.statusCode = result.status
-    res.json(result)
+document.get('/:id', async (req, res) => {
+    if(req.params.id === '0'){
+        return;
+    }
+    const result = await docCtrl.getDocumentById(req.params.id);
+    res.statusCode = result.status;
+    res.json(result);
 })
-// [
+// [ 
 //     { id: 1, title: 'Snow', content: 'txtxtxttxtxtx', createdAt: 'Jon'},
 //     { id: 2, title: 'Snow', content: 'txtxtxttxtxtx', createdAt: 'Jon'},
 //     { id: 3, title: 'Snow', content: 'txtxtxttxtxtx', createdAt: 'Jon'},
@@ -30,9 +32,10 @@ document.get('/:id', async(req, res) => {
 //     { id: 9, title: 'Snow', content: 'txtxtxttxtxtx', createdAt: 'Jon'},
 //     { id: 11, title: 'Snow', content: 'txtxtxttxtxtx', createdAt: 'Jon'},
 // ]
-document.post('/', async(req, res) => {
-    res.json([
-    ])
+document.post('/', async (req, res) => {
+       const result = await docCtrl.createDoc(req.body);
+       res.statusCode = result.status;
+       res.json(result);
 })
 
 document.patch('/:id', async(req, res) => {

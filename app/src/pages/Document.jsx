@@ -7,7 +7,7 @@ import useSWR from 'swr'
 import { Editor } from '@tinymce/tinymce-react';
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/material";
-import { userIsLoggedIn } from "../services/auth";
+import { getUserId, userIsLoggedIn } from "../services/auth";
 
 const Document = ({ setCurrentRoute }) => {
   const editorRef = useRef(null);
@@ -18,36 +18,58 @@ const Document = ({ setCurrentRoute }) => {
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
+  const { data, error, isLoading } = useSWR(`http://localhost:3002/document/${params.id === undefined ? 0 : params.id}`, fetcher, { refreshInterval: 5000 })
+  const user = getUserId()
+  
 
-  const { data, error, isLoading } = useSWR(`http://localhost:3002/document/${params.id}`, fetcher, { refreshInterval: 5000 })
-  console.log(error)
   const  [ titleVar , setTitle] = useState("")
   const  [ content , setContent] = useState("")
 
 
 const loadDoc = async ()=> {
-  console.log(data.document)
-  setTitle(data.document.title)
-  setContent(data.document.content)
+  if(params.id !== undefined) {
+    console.log(data)
+    console.log('oi')
+    setTitle(data.doc.title)
+    setContent(data.doc.content)
+  }
 }
 
-
-
-const updateDoc = () => {
-  fetch(`http://localhost:3002/document/${params.id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      content: editorRef.current.getContent(), 
-      title: titleVar,
-    }),
-    headers: {
-      'Content-type' : 'application/json; charset=UTF-8'
-    }
-  })
+const updateDoc = async () => {
+  if(params.id !== undefined){
+      await fetch(`http://localhost:3002/document/${params.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+              nome: titleVar,
+              content: editorRef.current.getContent()
+          }),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          },
+      })
+  }else{
+      const response = await fetch(`http://localhost:3002/document`, {
+          method: 'POST',
+          body: JSON.stringify({
+              nome: titleVar,
+              content: editorRef.current.getContent(),
+              id: user.id
+          }),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+          },
+      })
+      const data = await response.json();
+      navigate(`/document/${data._id}`);
+  }
+  
 }
+
 
   useEffect(() => {
-    loadDoc()
+    if(params.id !== undefined) {
+      loadDoc()
+    }
   }, [data])
 
   useEffect(() => {

@@ -35,7 +35,22 @@ auth.post('/register', async (req, res) => {
 })
 
 auth.get('/confirm-email', async (req, res) => {
-    res.json({})
+    const result = await userCtrl.emailConfirmation(req.query.token)
+    if(result) {
+        res.render('confirm-email', {
+            status: 200,
+            url_font: 'http://localhost:3000/login',
+            msg: 'Usuário ativado'
+        })
+        return   
+    }
+        res.render('confirm-email', {
+            status: 0,
+            url_font: '',
+            msg: 'Erro ao confirmar o email'
+        })
 })
+    
+
 
 export default auth;

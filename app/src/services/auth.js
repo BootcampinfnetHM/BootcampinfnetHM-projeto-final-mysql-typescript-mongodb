@@ -44,7 +44,7 @@ const forgotPassword = (email, password) => {
 
 }
 
-const getId = () => {
+const getUserId = () => {
     return JSON.parse(window.localStorage.getItem('user'))
 
 }
@@ -53,5 +53,5 @@ export {
     login,
     register,
     userIsLoggedIn,
-    getId
+    getUserId
 }

@@ -4,8 +4,12 @@ import React, { useState, useEffect } from "react"
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { Lista }  from "../components"
 import useSWR from 'swr'
-import { getId, userIsLoggedIn } from "../services/auth";
+import { getUserId, userIsLoggedIn } from "../services/auth";
 import axios from "axios";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+
+
 
 const deleteDocument = async (id) => {
     const conf = window.confirm("Tem certeza que deseja deletar este arquivo?")
@@ -37,7 +41,7 @@ const Documents = ({ setCurrentRoute }) => {
 
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(10)
-    const user = getId()
+    const user = getUserId()
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -47,18 +51,20 @@ const Documents = ({ setCurrentRoute }) => {
     console.log(error)
     const columns = [
         { headerName: 'Id', key: '_id', id: true },
-        { headerName: 'Título', key: 'title', id: true },
+        { headerName: 'Título', key: 'nome', id: true },
         { headerName: 'Conteúdo', key: 'content', id: false },
         { headerName: 'Criado em', key: 'createdAt', id: false  },
         { headerName: 'Última alteração', key: 'updatedAt', id: false  },
         { headerName: 'Ações', key: 'null', id: false, action: (params) => {
             return <>
+
                 <IconButton onClick={() =>  navigate(`/document/${params._id}`)} >
                     <Edit></Edit>
                 </IconButton>
                 <IconButton onClick={() => deleteDocument(params._id)} >
                     <Delete></Delete>
                 </IconButton>
+
             
             </>
         }  },
@@ -75,7 +81,9 @@ const Documents = ({ setCurrentRoute }) => {
         isLoading: isLoading
     }
 
-    return <Grid container spacing={2} justifyContent="center"> 
+    return <>
+    
+    <Grid container spacing={2} justifyContent="center"> 
 
     <Grid item xs={12} md={10} lg={10} xl={10}> 
         {
@@ -93,7 +101,7 @@ const Documents = ({ setCurrentRoute }) => {
                                             setLimit(event.target.value)
                                         }}
                                         label="Limit"
-                                    >
+                                        >
                                     <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={10}>10</MenuItem>
                                     <MenuItem value={15}>15</MenuItem>
@@ -102,8 +110,15 @@ const Documents = ({ setCurrentRoute }) => {
         </Stack>
     </Grid>
     <Grid item xs={12} md={12} lg={12} xl={12}></Grid>
-
     </Grid>
+
+        <Fab
+        aria-label="add"
+        onClick={ () => navigate('/document') }
+        style={{position: 'fixed', bottom: '20px', right: '20px'}}  >
+            <AddIcon style={{boxShadow: '0px !important'}} />
+        </Fab>
+    </>
     
 }       
 
