@@ -30,15 +30,20 @@ import Paper from '@mui/material/Paper';
     
                 rows.length > 0 ? 
                 (
-                  rows.map((row, idx) => (
-                    <TableRow key={`${idx}+${row}`} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  rows.map((row, idx, e) => (
+                    <TableRow key={`${idx}`} style ={ idx % 2? { background : "rgb(233 240 229)" }:{ background : "white" }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     {
                         columns.map(column => {
+                          // TODO: Alterar formatação das datas
+                                // if(column.headerName === 'Última alteração' || column.headerName === 'Criado em') {
+                                //  return row.updatedAt.slice(0, -15)
+
+                                // }
                                 if (column.action) {
-                                  return column.action(row, row.content.substring(0, 10))
+                                  return column.action(row, row.updatedAt)
                                 }
                                 if (column.headerName === 'Prévia') {
-                                  return row.content = row.content.substring(0, 10)
+                                  return  row.content.substring(3, 30).replace('<p>', '').replace('</p>', '')
                                 }
                                 else {
                                   if(column.id){

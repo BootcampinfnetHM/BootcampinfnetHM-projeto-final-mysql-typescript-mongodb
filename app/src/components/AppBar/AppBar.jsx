@@ -14,11 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { userIsLoggedIn } from '../../services/auth';
 
-import './teste.css'
 
 const pages = [
-    {name: 'Novo documento', link: '/new-document/'},
-    {name: 'Pesquisar documentos', link: '/documents'},
+    {name: 'Home', link: '/home/'},
+    {name: 'Meus Documentos', link: '/documents'},
     {name: 'Sign in', link: '/login'},
     {name: 'Sign Up', link: '/register'},
 ];
@@ -71,7 +70,7 @@ function AppBarCustom() {
               textDecoration: 'none',
             }}
           >
-            <img width='80px' alt="Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/TK_archive_icon.svg/1024px-TK_archive_icon.svg.png" ></img>
+            <img width='80px' alt="Logo" src="https://helpx.adobe.com/content/dam/help/pt/creative-cloud/help/access_files.png.img.png" ></img>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

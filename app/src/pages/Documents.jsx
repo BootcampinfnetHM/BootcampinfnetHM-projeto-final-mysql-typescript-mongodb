@@ -1,7 +1,7 @@
 import { Grid, IconButton,Stack, FormControl, InputLabel, Select, Pagination, MenuItem } from "@mui/material"
 import { Delete, Edit } from "@mui/icons-material";
 import React, { useState, useEffect } from "react"
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Lista }  from "../components"
 import useSWR from 'swr'
 import { getUserId, userIsLoggedIn } from "../services/auth";
@@ -55,9 +55,8 @@ const Documents = ({ setCurrentRoute }) => {
         { headerName: 'Criado em', key: 'createdAt', id: false  },
         { headerName: 'Última alteração', key: 'updatedAt', id: false  },
         { headerName: 'Ações', key: 'null', id: false, action: (params, column) => {
-            console.log(params)
-            console.log('oi')
-            console.log(column)
+
+
             return <>
                 
                 <IconButton onClick={() =>  navigate(`/document/${params._id}`)} >

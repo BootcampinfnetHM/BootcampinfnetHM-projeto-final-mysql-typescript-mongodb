@@ -2,8 +2,8 @@ import { Stack, Grid, TextField, Box, Button } from "@mui/material"
 import { fontSize, height } from "@mui/system"
 import React, { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import './LoginRegisterBG.css'
-import { register, userIsLoggedIn } from "../services/auth"
+import './RegisterBG.css'
+import { register, userIsLoggedIn } from "../../services/auth"
 
 import { useNavigate } from "react-router-dom"
 

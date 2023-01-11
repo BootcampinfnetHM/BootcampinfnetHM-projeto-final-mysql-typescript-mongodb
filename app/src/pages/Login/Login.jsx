@@ -2,8 +2,8 @@ import { Stack, Grid, TextField, Box, Button } from "@mui/material"
 import { fontSize, height } from "@mui/system"
 import React, { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import './LoginRegisterBG.css'
-import { login, userIsLoggedIn } from "../services/auth"
+import './LoginBG.css'
+import { login, userIsLoggedIn } from "../../services/auth"
 
 const Login = ({ setCurrentRoute }) => {
     const navigate = useNavigate()

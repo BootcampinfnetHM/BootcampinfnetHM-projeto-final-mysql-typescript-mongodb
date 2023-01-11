@@ -9,10 +9,11 @@ import {
 
 import Document from './pages/Document';
 import Documents from './pages/Documents';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Loading from './pages/Loading';
-import NewDoc from './pages/NewDoc';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Loading from './components/Loading/Loading';
+import Home from './pages/Home/Home';
+import NotFound from './pages/NotFound/NotFound';
 
 
 import { Suspense, useState, useEffect } from 'react';
@@ -26,10 +27,13 @@ function App() {
   return (
     <Router>
         {
-          currentRoute !== '/login' && currentRoute !=='/register' ? <AppBar/> : ''
+          currentRoute !== '/login' && currentRoute !=='/register' && currentRoute !== '/not-found' ? <AppBar/> : ''
         }
         <Suspense suspense = {<Loading/>}/>
         <Routes>
+          <Route path="*" element={<NotFound setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/not-found" element={<NotFound setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/home/" element={<Home setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="" element={<Documents setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/documents" element={<Documents setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/document/:id" element={<Document setCurrentRoute={setCurrentRoute}/>}/>

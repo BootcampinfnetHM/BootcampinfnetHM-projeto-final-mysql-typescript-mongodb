@@ -5,11 +5,11 @@ import 'quill/dist/quill.snow.css'
 import { useState } from "react";
 import useSWR from 'swr'
 import { Editor } from '@tinymce/tinymce-react';
-import { Input } from "../components";
+import { Input } from "../../components";
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/material";
 
-const NewDoc = ({ setCurrentRoute }) => {
+const Home = ({ setCurrentRoute }) => {
   const editorRef = useRef(null);
 
   const location = useLocation();
@@ -66,4 +66,4 @@ const updateDoc = () => {
   );
 }
 
-export default NewDoc
+export default Home

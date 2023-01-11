@@ -33,3 +33,4 @@ Input.prototype = {
 }
 
 export default Input
+// TODO: Não está enviando o component
