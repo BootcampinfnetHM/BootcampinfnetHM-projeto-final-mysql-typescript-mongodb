@@ -3,7 +3,7 @@ import AdminJSExpress from '@adminjs/express'
 import AdminJSSequelize from '@adminjs/sequelize'
 import AdminJSMongoose from '@adminjs/mongoose'
 import express from 'express'
-import { User } from './models/user.entity'
+import { User } from './models/user.entity' 
 import { Role } from './models/role.entity'
 import { Document } from './models/document.entity'
 import UserController from './controllers/UserController'
@@ -26,7 +26,7 @@ const path = require('node:path')
 AdminJS.registerAdapter({
     Resource: AdminJSSequelize.Resource,
     Database: AdminJSSequelize.Database
-})
+}) 
 
 AdminJS.registerAdapter({
     Resource: AdminJSMongoose.Resource,
@@ -39,11 +39,11 @@ const sessionStore = new mysqlStore({
   user: process.env.SQL_DB_USER ,
   database: process.env.SQL_DB_NAME ,
   host: process.env.SQL_DB_HOST ,
-  port: process.env.SQL_DB_PORT ,
-  createDatabaseTable: true
-  
+  port: process.env.SQL_DB_PORT , 
+  createDatabaseTable: true 
+   
 })
-
+ 
 
 const generateResource = (Model: object, propreties: any = {}, action:any = {}) => {
   return {
@@ -81,7 +81,17 @@ const start = async () => {
         generateResource(Role),
         generateResource(User, 
           {
-          password: {type: 'password'}
+          password: {type: 'password'},
+          token: {
+            isVisible: {
+              list: false, edit: false, create: false, show: false
+            }
+          },
+          active: {
+            isVisible: {
+              list: false, edit: false, create: false, show: false
+            }
+          }
           },
           {
             new: {
@@ -152,12 +162,12 @@ const start = async () => {
   app.use('/document', document)
   app.use('/auth', auth)
 
-
-
+ 
+  
   app.listen(PORT, () => {
     console.log(`AdminJS started on http://localhost:${PORT}${admin.options.rootPath}`)
   })
 }
 
-start()
+start() 
 

@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { userIsLoggedIn } from '../../services/auth';
 
-
+import './teste.css'
 
 const pages = [
     {name: 'Novo documento', link: '/new-document/'},
@@ -148,9 +148,9 @@ function AppBarCustom() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://pps.whatsapp.net/v/t61.24694-24/233290709_811454273396782_7918534924383863266_n.jpg?ccb=11-4&oh=01_AdR2NXRA2Na-zCiBMesA6hV7fnzRcPGtahaw-QZPVHAW2A&oe=63BB9835" />
+                <Avatar alt="" src="https://avatars.githubusercontent.com/u/111820867?v=4" />
               </IconButton>
-            </Tooltip>
+            </Tooltip> 
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

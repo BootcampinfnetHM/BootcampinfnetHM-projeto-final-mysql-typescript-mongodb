@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,9 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-
-
-    
     const Lista = ({style, columns, rows, isLoading}) =>  {
       return (
         <TableContainer component={Paper} style={style} >
@@ -21,7 +17,7 @@ import Paper from '@mui/material/Paper';
               <TableRow>
 
                 {
-                columns.map(column => <TableCell>{column.headerName}</TableCell> )
+                columns.map((column, idx) => <TableCell key={`${idx}`}>{column.headerName}</TableCell> )
                 }
 
               </TableRow>
@@ -31,22 +27,28 @@ import Paper from '@mui/material/Paper';
 
                 isLoading ? 'Carregando' : 
                 // TODO: add component de loading
-                
-
+    
                 rows.length > 0 ? 
                 (
-                  rows.map((row) => (
-                    <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  rows.map((row, idx) => (
+                    <TableRow key={`${idx}+${row}`} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     {
                         columns.map(column => {
                                 if (column.action) {
-                                  return column.action(row)
+                                  return column.action(row, row.content.substring(0, 10))
+                                }
+                                if (column.headerName === 'Prévia') {
+                                  return row.content = row.content.substring(0, 10)
                                 }
                                 else {
                                   if(column.id){
-                                    return <TableCell style={{
-                                                        fontWeight: 'bold'
-                                                    }} component="th" scope="row">{row[column.key]}</TableCell>
+                                    return <TableCell 
+                                              
+                                              style={{ fontWeight: 'bold'}} 
+                                              component="th"
+                                              scope="row">{row[column.key]}
+                                          
+                                              </TableCell>
                                   }
                                   else{
                                       return <TableCell>{row[column.key]}</TableCell>
@@ -60,7 +62,7 @@ import Paper from '@mui/material/Paper';
                   ))
                 )
                 : 
-                ('a')
+                ('Nenhum documento foi criado ainda.')
               }
             </TableBody>
           </Table>

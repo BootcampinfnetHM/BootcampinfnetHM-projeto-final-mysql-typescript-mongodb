@@ -48,16 +48,18 @@ const Documents = ({ setCurrentRoute }) => {
     }
 
     const { data, error, isLoading } = useSWR(`http://localhost:3002/document?id=${user.id}&page=${page}&limit=${limit}`, fetcher, {refreshInterval: 5000})
-    console.log(error)
+
     const columns = [
-        { headerName: 'Id', key: '_id', id: true },
         { headerName: 'Título', key: 'nome', id: true },
-        { headerName: 'Conteúdo', key: 'content', id: false },
+        { headerName: 'Prévia', key: 'content', id: false },
         { headerName: 'Criado em', key: 'createdAt', id: false  },
         { headerName: 'Última alteração', key: 'updatedAt', id: false  },
-        { headerName: 'Ações', key: 'null', id: false, action: (params) => {
+        { headerName: 'Ações', key: 'null', id: false, action: (params, column) => {
+            console.log(params)
+            console.log('oi')
+            console.log(column)
             return <>
-
+                
                 <IconButton onClick={() =>  navigate(`/document/${params._id}`)} >
                     <Edit></Edit>
                 </IconButton>
@@ -78,7 +80,7 @@ const Documents = ({ setCurrentRoute }) => {
         },
         columns: columns,
         rows: data !== undefined ? data.document : []  ,
-        isLoading: isLoading
+        isLoading
     }
 
     return <>
@@ -116,7 +118,7 @@ const Documents = ({ setCurrentRoute }) => {
         aria-label="add"
         onClick={ () => navigate('/document') }
         style={{position: 'fixed', bottom: '20px', right: '20px'}}  >
-            <AddIcon style={{boxShadow: '0px !important'}} />
+            <AddIcon/>
         </Fab>
     </>
     

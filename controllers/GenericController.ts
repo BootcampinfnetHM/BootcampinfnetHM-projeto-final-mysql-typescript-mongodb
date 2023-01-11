@@ -8,4 +8,4 @@ class GeneriController {
 }
  
 
-export default GeneriController   
+export default GeneriController    

@@ -28,9 +28,7 @@ const Document = ({ setCurrentRoute }) => {
 
 const loadDoc = async ()=> {
   if(params.id !== undefined) {
-    console.log(data)
-    console.log('oi')
-    setTitle(data.doc.title)
+    setTitle(data.doc.nome)
     setContent(data.doc.content)
   }
 }
@@ -48,7 +46,7 @@ const updateDoc = async () => {
           },
       })
   }else{
-      const response = await fetch(`http://localhost:3002/document`, {
+      await fetch(`http://localhost:3002/document`, {
           method: 'POST',
           body: JSON.stringify({
               nome: titleVar,
@@ -59,8 +57,8 @@ const updateDoc = async () => {
               'Content-type': 'application/json; charset=UTF-8',
           },
       })
-      const data = await response.json();
-      navigate(`/document/${data._id}`);
+
+
   }
   
 }
@@ -79,7 +77,7 @@ const updateDoc = async () => {
 
   return (
     <Box style ={{
-      padding: '10px'
+      padding: '10px',
     }}>
       <TextField
           fullWidth={true}
@@ -92,24 +90,36 @@ const updateDoc = async () => {
           }}
           >
       </TextField>
+      <div style={{
+        margin: 'auto',
+        maxWidth: '1300px',
+
+
+      }}>
       <Editor
+
         onInit={(evt, editor) => editorRef.current = editor}
         initialValue={content}
         init={{
-          height: 500,
-          menubar: false,
+          
+          height: 700,
+          menubar: true,
           plugins: [
-            'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table paste code help wordcount'
+            'save'
           ],
+          theme_advanced_buttons3_add : "save",
           toolbar: 'undo redo | formatselect | ' +
           'bold italic backcolor | alignleft aligncenter ' +
           'alignright alignjustify | bullist numlist outdent indent | ' +
-          'removeformat | help',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+          'removeformat',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          statusbar: false,
+          entity_encoding: 'raw',
+
         }}
-      />
+         />
+      </div>
+
       <Button onClick={updateDoc} variant="contained">Salvar alterações</Button>
     </Box>
   );

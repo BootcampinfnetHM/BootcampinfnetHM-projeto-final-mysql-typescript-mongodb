@@ -33,12 +33,15 @@ class UserController {
     }
 
     async register(email: string, username: string, name: string, password: string){
-
-      let tokenHash = await bcrypt.hash(`${username}${name}`, 10)
+      let generatePin = () => {
+        return Math.random().toString().substring(2, 4)
+    }
+      // TODO: Mudar token para PIN
+      let tokenHash = await bcrypt.hash(`${generatePin}`, 10)
+      console.log(tokenHash)
       let pass = await bcrypt.hashSync(password, 10)
 
 
-      // TODO: Mudar token para PIN
         let user =  await User.create({ 
           email,
           username,
