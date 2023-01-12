@@ -31,7 +31,7 @@ const Register = ({ setCurrentRoute }) => {
         <Grid item xs={12} sm={6} md={6} xl={6} >
             <Stack alignItems={'center'} spacing={2} >
 
-                <img width={'25%'} alt="logo Online Docs" src="https://helpx.adobe.com/content/dam/help/pt/creative-cloud/help/access_files.png.img.png"></img>
+                <img width={'25%'} alt="logo Online Docs" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/TK_archive_icon.svg/1024px-TK_archive_icon.svg.png"></img>
                 <h1 style={{fontSize: '40px'}}>ONLINE DOCS</h1>
                 <p style={{fontSize: '15px'}}>Login</p>
                 <Stack justifyContent={'center'} style={{width: '50%'}} spacing={2}>

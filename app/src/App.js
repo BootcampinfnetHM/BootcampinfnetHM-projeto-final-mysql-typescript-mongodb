@@ -34,7 +34,8 @@ function App() {
           <Route path="*" element={<NotFound setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/not-found" element={<NotFound setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/home/" element={<Home setCurrentRoute={setCurrentRoute}/>}/>
-          <Route path="" element={<Documents setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="" element={<Home setCurrentRoute={setCurrentRoute}/>}/>
+          <Route path="/" element={<Home setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/documents" element={<Documents setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/document/:id" element={<Document setCurrentRoute={setCurrentRoute}/>}/>
           <Route path="/document/" element={<Document setCurrentRoute={setCurrentRoute}/>}/>

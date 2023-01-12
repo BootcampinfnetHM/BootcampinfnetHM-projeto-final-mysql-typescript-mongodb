@@ -11,15 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, useNavigate } from 'react-router-dom';
-import { userIsLoggedIn } from '../../services/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getUser, userIsLoggedIn } from '../../services/auth';
 
 
 const pages = [
     {name: 'Home', link: '/home/'},
     {name: 'Meus Documentos', link: '/documents'},
-    {name: 'Sign in', link: '/login'},
-    {name: 'Sign Up', link: '/register'},
 ];
 const settings = [
     {
@@ -31,7 +29,11 @@ const settings = [
     }
 ];
 
+
 function AppBarCustom() {
+  const wellcomeUsername = getUser()
+
+ 
   const navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -50,6 +52,7 @@ function AppBarCustom() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
 
   return (
     <AppBar style={{backgroundColor: 'black'}} position="static">
@@ -70,7 +73,7 @@ function AppBarCustom() {
               textDecoration: 'none',
             }}
           >
-            <img width='80px' alt="Logo" src="https://helpx.adobe.com/content/dam/help/pt/creative-cloud/help/access_files.png.img.png" ></img>
+            <img width='80px' alt="Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/TK_archive_icon.svg/1024px-TK_archive_icon.svg.png" ></img>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -143,6 +146,10 @@ function AppBarCustom() {
               </Button>
             ))}
           </Box>
+          <Box style={{marginRight: '10px'}}>
+          Olá, {wellcomeUsername ? wellcomeUsername.username : ''}
+          </Box>
+
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

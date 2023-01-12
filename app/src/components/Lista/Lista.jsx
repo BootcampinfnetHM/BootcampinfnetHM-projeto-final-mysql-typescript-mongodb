@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import './Lista.css'
 
     const Lista = ({style, columns, rows, isLoading}) =>  {
       return (
@@ -67,7 +68,12 @@ import Paper from '@mui/material/Paper';
                   ))
                 )
                 : 
-                ('Nenhum documento foi criado ainda.')
+                (
+                  <>
+                  <h2 style={{ padding: '30px'}}>Nenhum documento foi criado ainda.</h2>
+                  <div className='indicator'></div>
+                  </>
+                )
               }
             </TableBody>
           </Table>

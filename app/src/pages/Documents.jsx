@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Lista }  from "../components"
 import useSWR from 'swr'
-import { getUserId, userIsLoggedIn } from "../services/auth";
+import { getUser, userIsLoggedIn } from "../services/auth";
 import axios from "axios";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -41,7 +41,7 @@ const Documents = ({ setCurrentRoute }) => {
 
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(10)
-    const user = getUserId()
+    const user = getUser()
 
     const handleChange = (event, value) => {
         setPage(value)
@@ -117,7 +117,7 @@ const Documents = ({ setCurrentRoute }) => {
         aria-label="add"
         onClick={ () => navigate('/document') }
         style={{position: 'fixed', bottom: '20px', right: '20px'}}  >
-            <AddIcon/>
+        <AddIcon/>
         </Fab>
     </>
     

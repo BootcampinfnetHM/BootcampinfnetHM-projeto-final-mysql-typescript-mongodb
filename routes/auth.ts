@@ -50,7 +50,18 @@ auth.get('/confirm-email', async (req, res) => {
             msg: 'Erro ao confirmar o email'
         })
 })
+
+auth.patch("/forgot-password", async (req, res) => {
+    const result = await userCtrl.forgotPassword(req.body) 
     
+    
+ })
+ 
+auth.post("/new-password", async (req, res) => {
+    const result = await userCtrl.newPassword(req.body.email) 
+    res.statusCode = result.status
+    res.send(result.result)
+ })
 
 
 export default auth;

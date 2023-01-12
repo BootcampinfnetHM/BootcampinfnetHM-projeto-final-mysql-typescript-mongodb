@@ -5,7 +5,14 @@ class GeneriController {
 
             return [limitVar, pageVar]
     }
+
+
+   generatePin(){
+      
+        return (Math.random() * 1000).toString().replace('.', '').slice(0, 4)
+    }
+
 }
  
 
-export default GeneriController    
+export default GeneriController

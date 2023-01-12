@@ -7,7 +7,7 @@ import useSWR from 'swr'
 import { Editor } from '@tinymce/tinymce-react';
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/material";
-import { getUserId, userIsLoggedIn } from "../services/auth";
+import { getUser, userIsLoggedIn } from "../services/auth";
 
 const Document = ({ setCurrentRoute }) => {
   const editorRef = useRef(null);
@@ -19,7 +19,7 @@ const Document = ({ setCurrentRoute }) => {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
   const { data, error, isLoading } = useSWR(`http://localhost:3002/document/${params.id === undefined ? 0 : params.id}`, fetcher, { refreshInterval: 5000 })
-  const user = getUserId()
+  const userId = getUser()
   
 
   const  [ titleVar , setTitle] = useState("")
@@ -51,16 +51,13 @@ const updateDoc = async () => {
           body: JSON.stringify({
               nome: titleVar,
               content: editorRef.current.getContent(),
-              id: user.id
+              id: userId.id
           }),
           headers: {
               'Content-type': 'application/json; charset=UTF-8',
           },
       })
-
-
   }
-  
 }
 
 

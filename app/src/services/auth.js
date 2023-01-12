@@ -40,11 +40,19 @@ const register = async (email, username, name, password) => {
     })
 
 }
-const forgotPassword = (email, password) => {
-
+const forgotPassword = async (userEmail) => {
+    console.log(userEmail)
+    return await axios ({
+        method: 'patch',
+        url: 'http://localhost:3002/auth/forgot-password',
+        data: {
+            userEmail
+        },
+        headers
+    })
 }
 
-const getUserId = () => {
+const getUser = () => {
     return JSON.parse(window.localStorage.getItem('user'))
 
 }
@@ -53,5 +61,6 @@ export {
     login,
     register,
     userIsLoggedIn,
-    getUserId
+    getUser,
+    forgotPassword
 }
