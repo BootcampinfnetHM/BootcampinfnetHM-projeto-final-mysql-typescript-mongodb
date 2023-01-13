@@ -13,6 +13,8 @@ const Document = ({ setCurrentRoute }) => {
   const editorRef = useRef(null);
 
   const location = useLocation();
+  setCurrentRoute(location.pathname)
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -75,6 +77,7 @@ const updateDoc = async () => {
   return (
     <Box style ={{
       padding: '10px',
+      background: 'white'
     }}>
       <TextField
           fullWidth={true}

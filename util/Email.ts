@@ -39,7 +39,7 @@ class Mail {
             to: process.env.EMAIL,
             subject,
             template,
-            context
+            context 
         }
         try {
             return await this.transporter.sendMail(data)

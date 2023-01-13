@@ -26,10 +26,8 @@ class UserController extends GenericController{
             }
           })
           if(user && user.active) {
-            console.log(password)
             const verifyPass =  bcrypt.compareSync(password, user.password)
-            
-            console.log(verifyPass)
+
             if(verifyPass) return user
           }
           return null 
@@ -42,17 +40,17 @@ class UserController extends GenericController{
       let pass = await bcrypt.hashSync(password, 10)
 
 
-        // let user =  await User.create({ 
-        //   email, 
-        //   username,
-        //   name,
-        //   password: pass,
-        //   token: tokenHash,
-        //   active: false,
-        //   role_id: 3,
-        //   createdAt: new Date(),
-        //   updatedAt: new Date()
-        //   })
+        let user =  await User.create({ 
+            email, 
+            username,
+            name,
+            password: pass,
+            token: tokenHash,
+            active: false,
+            role_id: 3,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          })
 
           this.mail.sendEmail(`${email}`, 'Complete seu registro', 'token-email', {
             email,
@@ -86,7 +84,6 @@ class UserController extends GenericController{
     }
 
     forgotPassword = async (userEmail: any) => {
-      // console.log(bcrypt.compareSync()) comparar tokens do db com ggg
       let stringifyUserEmail = JSON.stringify(userEmail)
       let userSearch = stringifyUserEmail.substring(14, stringifyUserEmail.length).slice(0, -2)
 
@@ -102,7 +99,7 @@ class UserController extends GenericController{
 
 
       if(user && user.active) {
-        console.log(222222222222222222222)
+
         User.update({
           password: await bcrypt.hashSync(temporaryPassword, 10)
         }, {
@@ -124,6 +121,7 @@ class UserController extends GenericController{
       return true
       }
 
+     
       return false
 
 

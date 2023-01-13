@@ -12,8 +12,8 @@ import AddIcon from '@mui/icons-material/Add';
 
 
 const deleteDocument = async (id) => {
-    const conf = window.confirm("Tem certeza que deseja deletar este arquivo?")
-    if(conf) {
+    const confirmation = window.confirm("Tem certeza que deseja deletar este arquivo?")
+    if(confirmation) {
         try {
             await axios ({
                 method: 'delete',

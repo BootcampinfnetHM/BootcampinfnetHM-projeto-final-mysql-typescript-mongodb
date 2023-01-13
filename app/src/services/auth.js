@@ -11,7 +11,10 @@ const userIsLoggedIn = (navigate, route) => {
         if( route === '/login' || route === '/register') {
             navigate('/')
         }
+        return true
     }
+
+    return false
     // else{
     //     if( route !== '/login' && route !== '/register') {
     //         navigate('/login')

@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
         {
-          currentRoute !== '/login' && currentRoute !=='/register' && currentRoute !== '/not-found' ? <AppBar/> : ''
+          currentRoute !== '/login' && currentRoute !=='/register' && currentRoute !== '/' && currentRoute !== '/not-found' ? <AppBar/> : ''
         }
         <Suspense suspense = {<Loading/>}/>
         <Routes>

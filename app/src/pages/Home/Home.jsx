@@ -1,27 +1,212 @@
-import React, { useEffect, useRef } from "react"
-import { useLocation, useParams } from "react-router-dom"
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css'
-import { useState } from "react";
-import useSWR from 'swr'
-import { Editor } from '@tinymce/tinymce-react';
-import { Input } from "../../components";
-import { Button, TextField } from "@mui/material";
-import { Box } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box, Grid } from "@mui/material";
+import Footer from "../../components/Footer/Footer.jsx";
+import SearchIcon from '@mui/icons-material/Search';
 
-const Home = ({ setCurrentRoute }) => {
-  const editorRef = useRef(null);
+import "./Home.css"
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { width } from "@mui/system";
 
-  const location = useLocation();
-  const params = useParams();
+import { userIsLoggedIn } from "../../services/auth.js";
 
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
+// require('dotenv').config()
+
+const Home = () => {
+
+  const navigate = useNavigate()
 
 
+    return (
 
-  return <>
-  
-  </>
+        <>
+      
+      <ul id="menu-area">
+        <Link to="/home" id="logo-menu" >
+          <div>Online Docs</div>
+        </Link>
+        
+        <div id="searchbar-menu">
+          <div id="lupa-icon">
+            <SearchIcon 
+              color="action"
+              sx={{
+                fontSize: "30px",
+                marginLeft: '15px',
+                marginTop: "8px"
+              }}
+            />           
+            </div>
+          <input type="text" placeholder="O que você está procurando?" ></input>
+        </div>
+        <div id="menu-topo">
+          <li><NavLink to={"/home"}>HOME</NavLink></li>
+          <li><NavLink to={"/documents"}>MEUS DOCUMENTOS</NavLink></li>
+          {userIsLoggedIn() ? <li><NavLink to={"/profile"}>PERFIL</NavLink></li> : <li><NavLink to={"/login"}>LOGIN</NavLink></li>}
+        </div>
+      </ul>
+      
+      
+      
+       <div id="main-home">
+       
+        <Grid container spacing={2} id='bg-homepage' style={{
+          flexDirection: 'column',
+          background: 'black',
+
+        }} >
+            <Grid xl={12} md={12} sm={12} xs={12} item
+            style={{
+              padding: '0px',
+              background: 'white',
+
+            }}
+            >
+                <div
+                style={{
+                  padding: '0px 60px',
+                  height: '1000px',
+                  boxSizing: 'border-box',
+                  background: 'lightgrey',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'column'
+                }}>
+                    <img alt='' 
+                    style={{width: '250px'}}
+                    src={`https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/TK_archive_icon.svg/1024px-TK_archive_icon.svg.png`}>
+                    </img>
+                  <p
+                  style={{
+                    fontSize: '20px',
+                    textAlign: 'center',
+                    margin: '30px 0px'
+                  }}>
+                    Online Docs is a visual-first document creator that allows you to design documents supercharged with videos, images, graphics, charts, and graphs.
+                    <br></br>Create an impactful doc with Canva’s online text editor today.
+                  </p>
+                  <Link to={userIsLoggedIn() ? '/document' : '/login'}
+                  style={{
+                    color: 'black',
+                    position: 'relative'
+                  }}>
+                  <Box
+                  sx={{
+                    width: '650px',
+                    height: '350px',
+                    cursor: 'pointer',
+                    background: 'white',
+                  }}>
+                    {userIsLoggedIn() ? <Box 
+                        className="fake-document-box"
+                         id="box4-coluna-direita-home" 
+                         sx={{
+                          boxSizing: 'border-box',
+                          width: '100%',
+                          height: '100%',
+                          cursor: 'text',
+                          position: 'relative',
+                         '&:hover': {
+                             transitionDuration: '0.5s'
+                             }
+                          }}>
+
+                            <div
+                              className="init-type"
+                              style={{
+                                height: '20px',
+                                width: '2px',
+                                top: '120px',
+                                left: '20px',
+                                zIndex: '98',
+                                position: 'absolute',
+
+                              }}
+                            ></div>
+                    </Box> 
+                    : 
+                    <Box 
+                        className="fake-document-box2"
+                         id="box4-coluna-direita-home" 
+                         sx={{
+                          boxSizing: 'border-box',
+                          width: '100%',
+                          height: '100%',
+                          cursor: 'pointer',
+                          position: 'relative',
+                         '&:hover': {
+                             transitionDuration: '0.5s'
+                             }
+                          }}>
+
+                            <div
+                              className="init-type"
+                              style={{
+                                height: '20px',
+                                width: '2px',
+                                top: '120px',
+                                left: '20px',
+                                zIndex: '98',
+                                position: 'absolute',
+
+                              }}
+                            ></div>
+                    </Box>
+                    }
+                  </Box>
+                </Link>
+
+              </div>
+
+            </Grid>
+            <Grid xl={12} md={12} sm={12} xs={12} item>
+                <div
+                style={{
+                  height: '700px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingTop: '70px',
+                  boxSizing: 'border-box'
+                }}>
+
+                    <Box 
+                         id="box4-coluna-direita-home" 
+                         sx={{
+                          width: '1000px',
+                          height: '350px',
+                          cursor: 'pointer',
+
+                         background: 'white',
+
+                         '&:hover': {
+                             transform: 'scale(0.98)',
+                             transitionDuration: '0.5s'
+                             }
+                          }}>
+
+                    </Box>
+
+              </div>
+
+            </Grid>
+            
+                    
+                
+        </Grid>
+
+        <Footer/>
+       </div>
+       </>
+    )
+
 }
 
 export default Home
+
+
+  // const editorRef = useRef(null);
+
+  // const location = useLocation();
+  // const params = useParams();
+
+  // const fetcher = (...args) => fetch(...args).then(res => res.json())

@@ -10,7 +10,7 @@ document.get('/', async(req, res) => {
 
     res.statusCode = result.status
     res.json(result)
-})
+}) 
 
 document.get('/:id', async (req, res) => {
     if(req.params.id === '0'){
