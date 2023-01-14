@@ -46,7 +46,7 @@ const Footer = () => {
             </div>
             <div id="footer-newsletter">
                 <h4>Olá!</h4>
-                <p>Para receber novidades e promoções exclusivas da Magno, <br></br> assine nosso NewsLetter.</p>
+                <p>Para receber novidades e promoções exclusivas da OnlineDocs, <br></br> assine nosso NewsLetter.</p>
                 <TextField id="standard-basic" style={{backgroundColor: 'rgb(238, 238, 238)', marginBottom: '10px'}} label="Digite seu email" variant="standard" color="action" />
                 <Button variant="contained" fullWidth color="success" > Assinar </Button>
             </div>

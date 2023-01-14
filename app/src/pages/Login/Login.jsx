@@ -1,11 +1,27 @@
-import { Stack, Grid, TextField, Box, Button } from "@mui/material"
+import { Stack, Grid, TextField, Box, Button, Modal, Typography } from "@mui/material"
 import { fontSize, height } from "@mui/system"
 import React, { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import './LoginBG.css'
 import { login, userIsLoggedIn, forgotPassword } from "../../services/auth"
 
+const styleModal = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 const Login = ({ setCurrentRoute }) => {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+   const handleClose = () => setOpen(false);  
+     
     const navigate = useNavigate()
     const location = useLocation()
     setCurrentRoute(location.pathname)
@@ -17,7 +33,7 @@ const Login = ({ setCurrentRoute }) => {
     const [ userEmail , setUserEmail ] = useState("") 
     const [ password , setPassword ] = useState("") 
 
-    return <Grid container spacing={0}>
+    return <Grid container spacing={0} style={{background: 'white',}} >
         <Grid   item xs={0} sm={6} md={6} xl={6} >
             <Box >
                 <div className='bg-login-img'> </div>
@@ -83,13 +99,9 @@ const Login = ({ setCurrentRoute }) => {
                     <Button 
                     variant="contained" 
                     onClick={async () => {
-                        const response = await forgotPassword(userEmail)
-                        console.log(response)
-                        console.log('response')
-                        if(response.status === 200) {
-                            alert('Você recebrá um email de confirmação em alguns instantes')
-                            // TODO: Re-envio de email
-                        }
+                        handleOpen()
+                        await forgotPassword(userEmail)
+                        // TODO: Re-envio de email
                     }}
                     >
                         Esqueceu a senha?
@@ -98,7 +110,19 @@ const Login = ({ setCurrentRoute }) => {
                 </Stack>
             </Stack>
         </Grid>
+        <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box style={{width: '800px'}} sx={styleModal}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Você recebrá um email com a sua nova senha em alguns instantes.
+                        </Typography>
 
+                      </Box>
+        </Modal>
     </Grid>
 }
 

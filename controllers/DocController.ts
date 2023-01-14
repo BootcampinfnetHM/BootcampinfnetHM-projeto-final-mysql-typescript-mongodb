@@ -9,7 +9,7 @@ import GeneriController from "./GenericController";
 class DocController extends GeneriController{
     constructor() {
         super()
-    }
+    } 
 
     async getDocumentById(_id: string) {
         let doc = await Document.findById(_id)

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 
 import './NotFound.css'
+import { height } from "@mui/system";
 
 
 const NotFound = ({ setCurrentRoute }) => {
@@ -22,7 +23,13 @@ const NotFound = ({ setCurrentRoute }) => {
 
   return (
 <>
+<div style={{
+	width: '100vw',
+	height: '100vh',
+	background: 'black',
+}}>
 <figure>
+	
 	<div class="sad-mac"></div>
 	<figcaption>
 		<span class="sr-text">Error 404: Not Found</span>
@@ -44,6 +51,7 @@ const NotFound = ({ setCurrentRoute }) => {
 		<span class="d"></span>
 	</figcaption>
 </figure>
+</div>
 </>
   );
 }

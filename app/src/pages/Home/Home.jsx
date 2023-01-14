@@ -82,8 +82,8 @@ const Home = () => {
                     textAlign: 'center',
                     margin: '30px 0px'
                   }}>
-                    Online Docs is a visual-first document creator that allows you to design documents supercharged with videos, images, graphics, charts, and graphs.
-                    <br></br>Create an impactful doc with Canva’s online text editor today.
+                    Online Docs tem o objetivo de criar e armazenar documentos pessoais com suporte para vídeos, imagens, gráficos, tabelas, e dashboards.
+                    <br></br>Crie documentos impactantes com a OnlineDocs hoje mesmo!
                   </p>
                   <Link to={userIsLoggedIn() ? '/document' : '/login'}
                   style={{
@@ -96,6 +96,7 @@ const Home = () => {
                     height: '350px',
                     cursor: 'pointer',
                     background: 'white',
+                    borderRadius: '10px',
                   }}>
                     {userIsLoggedIn() ? <Box 
                         className="fake-document-box"
@@ -120,7 +121,7 @@ const Home = () => {
                                 left: '20px',
                                 zIndex: '98',
                                 position: 'absolute',
-
+                                cursor: 'pointer'
                               }}
                             ></div>
                     </Box> 

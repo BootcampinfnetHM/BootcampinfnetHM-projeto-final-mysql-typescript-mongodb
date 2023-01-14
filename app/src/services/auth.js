@@ -60,10 +60,11 @@ const getUser = () => {
 
 }
 
+
 export {
     login,
     register,
     userIsLoggedIn,
     getUser,
-    forgotPassword
+    forgotPassword,
 }

@@ -84,14 +84,27 @@ class UserController extends GenericController{
     }
 
     forgotPassword = async (userEmail: any) => {
-      let stringifyUserEmail = JSON.stringify(userEmail)
-      let userSearch = stringifyUserEmail.substring(14, stringifyUserEmail.length).slice(0, -2)
+    let idx: Array<number>
+    var i: number
 
+    let stringifyUserEmail = JSON.stringify(userEmail)
+    idx = []
+    
+    for(i = 0 ; i < stringifyUserEmail.length ; i++) {
+      if (stringifyUserEmail[i] === '"') {
+        idx.push(i);
+      }
+    }
+
+    stringifyUserEmail = stringifyUserEmail.substring(idx[2] + 1, idx[3])
+    console.log(stringifyUserEmail)
+    console.log(idx)
+    
       let user =  await User.findOne({
         where: {
           [Op.or]: [
-            {username: userSearch},
-            {email: userSearch}
+            {username: stringifyUserEmail},
+            {email: stringifyUserEmail}
           ]
         }
       })
@@ -105,8 +118,8 @@ class UserController extends GenericController{
         }, {
           where: {
             [Op.or]: [
-              {username: userSearch},
-              {email: userSearch}
+              {username: stringifyUserEmail},
+              {email: stringifyUserEmail}
             ]
           }
         })

@@ -53,8 +53,7 @@ auth.get('/confirm-email', async (req, res) => {
 
 auth.patch("/forgot-password", async (req, res) => {
     const result = await userCtrl.forgotPassword(req.body) 
-    
-    
+
  })
  
 auth.post("/new-password", async (req, res) => {

@@ -102,7 +102,7 @@ ul#menu-area * {
 
 .init-type {
     background-color: black;
-    animation-name: pop;
+    animation-name: pop2;
     animation-iteration-count: infinite;
     animation-duration: 1.2s;
 
@@ -128,27 +128,30 @@ ul#menu-area * {
     height: 100%;
     opacity: 45%;
     background-color: rgb(0, 0, 0);
+    border-radius: 0px 0px 10px 10px;
     animation-name: bgShowUp;
     animation-iteration-count: 1;
     animation-duration: 1s;
     z-index: 99;
+    cursor: pointer;
 }
 .fake-document-box2:hover::after {
     content: 'Faça login antes de continuar.';
 }
 
-@keyframes pop {
-    0% {
-        opacity: 0%;
-    }
-    50% {
-        opacity: 100%;
-    }
-    100% {
-        opacity: 0%;
-    }
+@keyframes pop2 {
+  0% {
+      opacity: 0%;
+  }
+  50% {
+      opacity: 100%;
+  }
+  100% {
+      opacity: 0%;
+  }
 
 }
+
 @keyframes bgShowUp {
     0% {
         opacity: 0%;

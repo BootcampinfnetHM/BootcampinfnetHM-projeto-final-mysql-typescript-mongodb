@@ -55,9 +55,14 @@ function AppBarCustom() {
 
 
   return (
-    <AppBar style={{backgroundColor: 'black'}} position="static">
+    <AppBar 
+      style={{
+        backgroundColor: 'black',
+        height: '130px',
+        padding: '25px',
+        }} position="static">
       <Container maxWidth="xl" >
-        <Toolbar disableGutters style={{padding: '10px'}}>
+        <Toolbar disableGutters >
           <Typography
             variant="h6"
             noWrap
