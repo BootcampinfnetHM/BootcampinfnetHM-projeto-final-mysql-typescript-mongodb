@@ -43,15 +43,16 @@ const register = async (email, username, name, password) => {
     })
 
 }
-const forgotPassword = async (userEmail) => {
-    console.log(userEmail)
+const forgotPassword = async (userEmail, loginUrl) => {
     return await axios ({
         method: 'patch',
         url: 'http://localhost:3002/auth/forgot-password',
         data: {
-            userEmail
+            userEmail,
+            loginUrl
         },
-        headers
+        headers,
+        
     })
 }
 

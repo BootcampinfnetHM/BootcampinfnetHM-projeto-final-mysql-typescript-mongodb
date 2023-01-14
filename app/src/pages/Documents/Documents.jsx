@@ -61,11 +61,14 @@ const Documents = ({ setCurrentRoute }) => {
     const [limit, setLimit] = useState(10)
     const user = getUser()
 
+
     const handleChange = (event, value) => {
         setPage(value)
     }
 
-    const { data, error, isLoading } = useSWR(`http://localhost:3002/document?id=${user.id}&page=${page}&limit=${limit}`, fetcher, {refreshInterval: 5000})
+    const navTest = (param) => { navigate(`/${param}`) }
+
+    const { data, error, isLoading } = useSWR(`http://localhost:3002/document?id=${user === null ? navTest('login') : user.id}&page=${page}&limit=${limit}`, fetcher, {refreshInterval: 5000})
 
     const columns = [
         { headerName: 'Título', key: 'nome', id: true },
@@ -81,11 +84,7 @@ const Documents = ({ setCurrentRoute }) => {
                 <IconButton onClick={() => {
                     setDeleteDoc(params._id)
                     handleClick()
-                    
-                }
-                    
-                }
-
+                }}
                 >
                     <Delete></Delete>
                 </IconButton>
@@ -153,11 +152,10 @@ const Documents = ({ setCurrentRoute }) => {
         onClose={handleClick}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Tem certeza que deseja deleta esse arquivo?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            Após deletar um item ele será enviado para a lixeira.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -22,12 +22,12 @@ class DocController extends GeneriController{
 
     async createDoc(data: any) {
         const doc = await Document.create(data);
-        return {
+        return { 
             status: 200,
             _id: doc.id
-        }
+        }  
     }  
-  
+   
 // TODO: Título não está salvando alteração. ?
     async updateDoc(_id: string, data: any) {
         let txt = await Document.findByIdAndUpdate({_id}, data)

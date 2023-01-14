@@ -86,7 +86,6 @@ class UserController extends GenericController{
     forgotPassword = async (userEmail: any) => {
     let idx: Array<number>
     var i: number
-
     let stringifyUserEmail = JSON.stringify(userEmail)
     idx = []
     
@@ -94,17 +93,17 @@ class UserController extends GenericController{
       if (stringifyUserEmail[i] === '"') {
         idx.push(i);
       }
-    }
+    } 
 
-    stringifyUserEmail = stringifyUserEmail.substring(idx[2] + 1, idx[3])
-    console.log(stringifyUserEmail)
-    console.log(idx)
+    let loginUrl = stringifyUserEmail.substring(idx[6] + 1, idx[7])
+    let userToFind = stringifyUserEmail.substring(idx[2] + 1, idx[3])
+
     
       let user =  await User.findOne({
         where: {
           [Op.or]: [
-            {username: stringifyUserEmail},
-            {email: stringifyUserEmail}
+            {username: userToFind},
+            {email: userToFind}
           ]
         }
       })
@@ -118,8 +117,8 @@ class UserController extends GenericController{
         }, {
           where: {
             [Op.or]: [
-              {username: stringifyUserEmail},
-              {email: stringifyUserEmail}
+              {username: userToFind},
+              {email: userToFind}
             ]
           }
         })
@@ -128,7 +127,7 @@ class UserController extends GenericController{
           msg: 'Senha alterada com sucesso',
           name: user?.name,
           temporaryPassword,
-          url: 'http://localhost:3002'
+          url: loginUrl
         })
 
       return true
