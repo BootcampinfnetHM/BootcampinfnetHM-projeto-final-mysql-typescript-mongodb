@@ -151,20 +151,25 @@ const Documents = ({ setCurrentRoute }) => {
         keepMounted
         onClose={handleClick}
         aria-describedby="alert-dialog-slide-description"
+        
       >
-        <DialogTitle>{"Tem certeza que deseja deleta esse arquivo?"}</DialogTitle>
+        <div style={{
+            border: '2px solid black'
+        }}>
+        <DialogTitle >{"Tem certeza que deseja deleta esse arquivo?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             Após deletar um item ele será enviado para a lixeira.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClick}>Disagree</Button>
+          <Button onClick={handleClick}>Cancelar</Button>
           <Button onClick={() => {
                 console.log(deleteDoc)
                 deleteDocument(deleteDoc)
-          }}>Agree</Button>
+          }}>Sim</Button>
         </DialogActions>
+        </div>
       </Dialog>
         {/* <Footer></Footer> */}
     </div>

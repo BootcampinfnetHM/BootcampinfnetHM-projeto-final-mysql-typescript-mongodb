@@ -32,7 +32,7 @@ import './Lista.css'
                 rows.length > 0 ? 
                 (
                   rows.map((row, idx, e) => (
-                    <TableRow key={`${idx}`} style ={ idx % 2? { background : "rgb(233 240 229)" }:{ background : "white" }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow key={`${idx}`} style ={ idx % 2? { background : "RGB(217 231 244)" }:{ background : "white" }} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     {
                         columns.map(column => {
                           // TODO: Alterar formatação das datas
