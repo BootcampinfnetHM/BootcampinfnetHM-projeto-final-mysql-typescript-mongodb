@@ -24,13 +24,15 @@ module.exports = {
     ], {})
      
      await queryInterface.bulkInsert('users', [{
-      name: 'Henrique',
-      username: 'HMagno',
-      email: 'henrique.magno019@gmail.com',
+      name: 'External Admin',
+      username: 'external-admin',
+      email: 'external-admin@gmail.com',
       password: bcrypt.hashSync('12345678', 10),
       role_id: 1,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      active: 1,
+      token: 'external-admin'
      }], {})
   },
 

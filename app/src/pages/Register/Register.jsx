@@ -178,7 +178,7 @@ const styleModal = {
                           Email inválido
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          Exemplo: "random@test.com"
+                          Exemplo: "exemple@random.com"
                         </Typography>
                       </Box>
                     </Modal>
