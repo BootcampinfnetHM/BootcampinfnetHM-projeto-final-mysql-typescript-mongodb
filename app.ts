@@ -156,6 +156,8 @@ const start = async () => {
   app.use(express.json())
   hbs.registerPartials(path.join(ROOT_DIR, 'views'))
   app.set('view engine', '.hbs')
+  app.use(express.static('css-hbs')); 
+
   
 
   app.use(admin.options.rootPath, adminRouter)

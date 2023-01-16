@@ -77,7 +77,10 @@ class UserController extends GenericController{
             id: user.id
           }
       })
-        return true
+        return {
+          active: 1,
+          name: user.name
+        }
       }
 
       return false 

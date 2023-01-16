@@ -40,7 +40,8 @@ auth.get('/confirm-email', async (req, res) => {
         res.render('confirm-email', {
             status: 200,
             url_font: 'http://localhost:3000/login',
-            msg: 'Usuário ativado'
+            msg: 'Usuário ativado',
+            name: result.name
         })
         return   
     }
